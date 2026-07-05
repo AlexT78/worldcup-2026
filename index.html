@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚽ World Cup 2026 — Results & Predictions</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        pitch: { dark: '#0a1f0a', mid: '#0d2b0d', light: '#14532d' },
+        gold: '#f5a623',
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background: #0a0f0a; color: #e5e7eb; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .tab-btn { transition: all 0.15s ease; }
+  .tab-btn.active { background: linear-gradient(135deg, #166534, #15803d); color: #fff; box-shadow: 0 0 15px rgba(22,163,74,0.3); }
+  .card { background: #111a11; border: 1px solid #1a2e1a; border-radius: 12px; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0f0a; }
+  ::-webkit-scrollbar-thumb { background: #1e3a1e; border-radius: 3px; }
+</style>
+</head>
+<body class="min-h-screen">
+<div id="app" class="max-w-5xl mx-auto px-3 py-4 sm:px-6 sm:py-8">
+
+  <!-- Header -->
+  <header class="text-center mb-6">
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+      <span class="bg-gradient-to-r from-yellow-400 via-green-400 to-emerald-300 bg-clip-text text-transparent">⚽ World Cup 2026</span>
+    </h1>
+    <p class="text-gray-500 mt-1 text-sm sm:text-base">Results · Standings · Predictions</p>
+    <div id="live-badge" class="hidden mt-2 inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold animate-pulse"></div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="flex gap-2 justify-center mb-6 flex-wrap">
+    <button class="tab-btn active px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 text-gray-400" data-tab="overview">📊 Overview</button>
+    <button class="tab-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 text-gray-400" data-tab="standings">📋 Standings</button>
+    <button class="tab-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 text-gray-400" data-tab="predictions">🏆 Predictions</button>
+  </nav>
+
+  <!-- Loading -->
+  <div id="loading" class="text-center py-12 text-gray-500">
+    <div class="animate-spin inline-block w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full mb-3"></div>
+    <p>Loading World Cup data...</p>
+  </div>
+
+  <!-- Content tabs -->
+  <div id="overview-panel" class="tab-content hidden"></div>
+  <div id="standings-panel" class="tab-content hidden"></div>
+  <div id="predictions-panel" class="tab-content hidden"></div>
+
+  <!-- Footer -->
+  <footer class="mt-10 text-center text-gray-600 text-xs">
+    <p>Data from Wikipedia · Auto-refreshed on GitHub Pages</p>
+    <p id="last-updated" class="mt-1"></p>
+  </footer>
+</div>
+
+<script>
+// ──────────────────────────────────────────
+// STATE
+// ──────────────────────────────────────────
+let state = { standings: {}, teams: [], last_updated: '' };
+
+// ──────────────────────────────────────────
+// ELO RATING ENGINE
+// ──────────────────────────────────────────
+const ELO = {
+  K: 32,
+  DEFAULT: 1500,
+  ratings: {}, // team_name -> rating
+
+  get(name) {
+    if (!this.ratings[name]) this.ratings[name] = this.DEFAULT;
+    return this.ratings[name];
+  },
+
+  expected(a, b) {
+    return 1 / (1 + Math.pow(10, (b - a) / 400));
+  },
+
+  predict(home, away) {
+    const h = this.get(home) + 50; // home advantage
+    const a = this.get(away);
+    const eH = this.expected(h, a);
+    const eA = this.expected(a, h);
+    const eloDiff = Math.abs(h - a);
+    const draw = 0.25 * Math.exp(-eloDiff / 200);
+    const hW = (eH * (1 - draw)) / (eH + eA);
+    const aW = (eA * (1 - draw)) / (eH + eA);
+    return {
+      homeWin: Math.round(hW * 10000) / 100,
+      draw: Math.round(draw * 10000) / 100,
+      awayWin: Math.round(aW * 10000) / 100,
+    };
+  },
+
+  update(home, away, homeScore, awayScore) {
+    const h = this.get(home) + 50;
+    const a = this.get(away);
+    const eH = this.expected(h, a);
+    const eA = this.expected(a, h);
+    let sH, sA;
+    if (homeScore > awayScore) { sH = 1; sA = 0; }
+    else if (homeScore < awayScore) { sH = 0; sA = 1; }
+    else { sH = 0.5; sA = 0.5; }
+    this.ratings[home] = this.get(home) + this.K * (sH - eH);
+    this.ratings[away] = this.get(away) + this.K * (sA - eA);
+  },
+
+  seedFromStandings(standings) {
+    // Use group standings to seed ELO (Pts + GD as proxy)
+    for (const [group, teams] of Object.entries(standings)) {
+      for (const t of teams) {
+        // Base 1500 + points*20 + GD bonus
+        const elo = 1500 + t.pts * 20 + t.gd * 5;
+        this.ratings[t.team] = elo;
+      }
+    }
+  }
+};
+
+// ──────────────────────────────────────────
+// MONTE CARLO TOURNAMENT SIMULATION
+// ──────────────────────────────────────────
+function simulateMatch(teamA, teamB, ratings) {
+  const h = (ratings[teamA] || 1500) + 50;
+  const a = ratings[teamB] || 1500;
+  const eH = 1 / (1 + Math.pow(10, (a - h) / 400));
+  // Knockout: no draws
+  return Math.random() < eH ? teamA : teamB;
+}
+
+function simulateTournament(teams, ratings, knockoutBracket, sims = 5000) {
+  const counts = {};
+  teams.forEach(t => counts[t.team] = 0);
+  
+  for (let i = 0; i < sims; i++) {
+    const simRatings = { ...ratings };
+    let currentRound = [...knockoutBracket];
+    
+    while (currentRound.length > 1) {
+      const nextRound = [];
+      for (let j = 0; j < currentRound.length; j += 2) {
+        const winner = simulateMatch(currentRound[j], currentRound[j + 1], simRatings);
+        nextRound.push(winner);
+      }
+      currentRound = nextRound;
+    }
+    
+    if (currentRound[0]) counts[currentRound[0]] = (counts[currentRound[0]] || 0) + 1;
+  }
+  
+  return Object.entries(counts)
+    .map(([name, c]) => ({ team: name, prob: Math.round(c / sims * 10000) / 100 }))
+    .filter(x => x.prob > 0)
+    .sort((a, b) => b.prob - a.prob);
+}
+
+// ──────────────────────────────────────────
+// DATA LOADING
+// ──────────────────────────────────────────
+async function loadData() {
+  try {
+    const resp = await fetch('data/data.json?t=' + Date.now());
+    const json = await resp.json();
+    state.standings = json.standings || {};
+    state.teams = json.teams || [];
+    state.last_updated = json.last_updated || '';
+    
+    // Seed ELO from standings
+    ELO.seedFromStandings(state.standings);
+    
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('last-updated').textContent = 
+      'Last updated: ' + (state.last_updated || new Date().toLocaleString());
+    renderAll();
+  } catch (err) {
+    console.error('Load error:', err);
+    document.getElementById('loading').innerHTML = 
+      '<p class="text-red-400">⚠️ Failed to load data. Check console.</p>';
+  }
+}
+
+// ──────────────────────────────────────────
+// RENDER: OVERVIEW
+// ──────────────────────────────────────────
+function renderOverview() {
+  const panel = document.getElementById('overview-panel');
+  const groups = state.standings;
+  const groupNames = Object.keys(groups).sort();
+  
+  let html = '<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">';
+  
+  for (const groupName of groupNames) {
+    const teams = groups[groupName] || [];
+    const top2 = teams.filter(t => t.pos <= 2).map(t => t.team);
+    const done = teams[0]?.played || 0;
+    
+    html += `
+      <div class="card p-3 hover:border-green-700 transition-colors cursor-pointer" onclick="switchToStandings()">
+        <div class="text-xs font-bold text-green-400 mb-2">${groupName}</div>
+        <div class="space-y-1 text-sm">
+          ${teams.slice(0, 2).map((t, i) => `
+            <div class="flex justify-between ${i === 0 ? 'font-semibold text-white' : 'text-gray-300'}">
+              <span>${t.team}</span>
+              <span class="text-yellow-500">${t.pts}pts</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="text-xs text-gray-600 mt-2">${done}/3 matches played</div>
+      </div>`;
+  }
+  
+  html += '</div>';
+  
+  // Stats row
+  const totalTeams = Object.values(groups).flat().length;
+  const avgPlayed = totalTeams > 0 ? Math.round(Object.values(groups).flat().reduce((s, t) => s + t.played, 0) / totalTeams * 10) / 10 : 0;
+  
+  html += `
+    <div class="grid grid-cols-3 gap-3 mt-4 text-center">
+      <div class="card p-3"><div class="text-2xl font-bold text-green-400">${totalTeams}</div><div class="text-xs text-gray-500">Teams</div></div>
+      <div class="card p-3"><div class="text-2xl font-bold text-yellow-400">${groupNames.length}</div><div class="text-xs text-gray-500">Groups</div></div>
+      <div class="card p-3"><div class="text-2xl font-bold text-blue-400">${avgPlayed}</div><div class="text-xs text-gray-500">Avg MP</div></div>
+    </div>
+  `;
+  
+  panel.innerHTML = html;
+}
+
+// ──────────────────────────────────────────
+// RENDER: STANDINGS
+// ──────────────────────────────────────────
+function renderStandings() {
+  const panel = document.getElementById('standings-panel');
+  const groups = state.standings;
+  const groupNames = Object.keys(groups).sort();
+  
+  let html = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">';
+  
+  for (const groupName of groupNames) {
+    const teams = groups[groupName].sort((a, b) => a.pos - b.pos) || [];
+    
+    html += `
+      <div class="card p-3">
+        <h3 class="text-lg font-bold text-green-400 mb-2">${groupName}</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm">
+            <thead>
+              <tr class="text-gray-500 border-b border-gray-800">
+                <th class="text-left py-1 w-6">#</th>
+                <th class="text-left py-1">Team</th>
+                <th class="py-1 w-6">P</th>
+                <th class="py-1 w-6">W</th>
+                <th class="py-1 w-6">D</th>
+                <th class="py-1 w-6">L</th>
+                <th class="py-1 w-8">GD</th>
+                <th class="py-1 w-8 font-bold">Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${teams.map(t => `
+                <tr class="border-b border-gray-900 ${t.pos <= 2 ? 'text-white' : 'text-gray-500'}">
+                  <td class="py-1.5">${t.pos}</td>
+                  <td class="py-1.5">${t.team}</td>
+                  <td class="py-1.5 text-center">${t.played}</td>
+                  <td class="py-1.5 text-center">${t.won}</td>
+                  <td class="py-1.5 text-center">${t.drawn}</td>
+                  <td class="py-1.5 text-center">${t.lost}</td>
+                  <td class="py-1.5 text-center ${t.gd > 0 ? 'text-green-400' : t.gd < 0 ? 'text-red-400' : ''}">${t.gd > 0 ? '+' : ''}${t.gd}</td>
+                  <td class="py-1.5 text-center font-bold text-yellow-400">${t.pts}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+  
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
+// ──────────────────────────────────────────
+// RENDER: PREDICTIONS
+// ──────────────────────────────────────────
+function renderPredictions() {
+  const panel = document.getElementById('predictions-panel');
+  const allTeams = Object.values(state.standings).flat();
+  
+  if (allTeams.length < 4) {
+    panel.innerHTML = '<p class="text-gray-500 text-center py-8">Not enough data for predictions yet.</p>';
+    return;
+  }
+  
+  // Get top 16 teams for the knockout simulation
+  const topTeams = allTeams
+    .sort((a, b) => b.pts - a.pts || b.gd - a.gd)
+    .slice(0, 16)
+    .map(t => t.team);
+  
+  // Build a simple bracket
+  let bracket = [];
+  for (let i = 0; i < 16; i += 2) {
+    bracket.push(topTeams[i], topTeams[i + 1]);
+  }
+  
+  const ratings = { ...ELO.ratings };
+  const results = simulateTournament(topTeams, ratings, bracket, 5000);
+  const top8 = results.slice(0, 8);
+  
+  let html = `
+    <h2 class="text-xl font-bold mb-2">🏆 Tournament Winner Prediction</h2>
+    <p class="text-gray-500 text-sm mb-4">5,000 Monte Carlo simulations using ELO ratings derived from group stage results</p>
+    
+    <div class="card p-4 mb-4">
+      <canvas id="winnerChart" height="280"></canvas>
+    </div>
+    
+    <div class="space-y-2">
+      ${top8.map((t, i) => {
+        const teamData = allTeams.find(x => x.team === t.team);
+        const barWidth = Math.max(t.prob * 2.5, 2);
+        return `
+          <div class="flex items-center gap-2 sm:gap-3 text-sm">
+            <span class="w-6 text-right text-gray-500">#${i + 1}</span>
+            <span class="w-24 sm:w-32 truncate font-medium">${t.team}</span>
+            <div class="flex-1 bg-gray-800 rounded-full h-5">
+              <div class="bg-gradient-to-r from-green-600 to-emerald-400 h-5 rounded-full flex items-center justify-end pr-2" 
+                   style="width: ${barWidth}%">
+              </div>
+            </div>
+            <span class="w-16 text-right font-bold text-yellow-400">${t.prob}%</span>
+          </div>
+        `;
+      }).join('')}
+    </div>
+    
+    ${results.length > 10 ? `
+      <details class="mt-4 text-sm text-gray-500">
+        <summary class="cursor-pointer hover:text-gray-300">Show all ${results.length} teams</summary>
+        <div class="mt-2 space-y-1">
+          ${results.slice(8).map((t, i) => `
+            <div class="flex justify-between">
+              <span>#${i + 9} ${t.team}</span>
+              <span>${t.prob}%</span>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+    ` : ''}
+    
+    <div class="mt-6 card p-4">
+      <h3 class="font-semibold text-gray-300 mb-2">📈 Top ELO Ratings</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+        ${Object.entries(ELO.ratings)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 12)
+          .map(([name, rating]) => `
+            <div class="flex justify-between px-3 py-1.5 bg-gray-900 rounded">
+              <span class="truncate mr-1">${name}</span>
+              <span class="text-green-400 font-mono">${Math.round(rating)}</span>
+            </div>
+          `).join('')}
+      </div>
+    </div>
+  `;
+  
+  panel.innerHTML = html;
+  
+  // Chart.js
+  setTimeout(() => {
+    const ctx = document.getElementById('winnerChart');
+    if (!ctx || !top8.length) return;
+    const colors = ['#22c55e','#3b82f6','#f59e0b','#ef4444','#8b5cf6','#ec4899','#14b8a6','#f97316'];
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: top8.map(t => t.team.length > 12 ? t.team.slice(0,11)+'…' : t.team),
+        datasets: [{
+          label: 'Win Probability (%)',
+          data: top8.map(t => t.prob),
+          backgroundColor: colors,
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: '#1f2937' },
+            ticks: { callback: v => v + '%', color: '#9ca3af' },
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: '#9ca3af', font: { size: 10 } },
+          }
+        }
+      }
+    });
+  }, 100);
+}
+
+// ──────────────────────────────────────────
+// RENDER ALL
+// ──────────────────────────────────────────
+function renderAll() {
+  renderOverview();
+  renderStandings();
+  renderPredictions();
+  
+  // Show overview tab by default
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('[data-tab="overview"]').classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+  document.getElementById('overview-panel').classList.remove('hidden');
+}
+
+function switchToStandings() {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('[data-tab="standings"]').classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+  document.getElementById('standings-panel').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ──────────────────────────────────────────
+// TAB SWITCHING
+// ──────────────────────────────────────────
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+  const panelId = btn.dataset.tab + '-panel';
+  document.getElementById(panelId).classList.remove('hidden');
+});
+
+// ──────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>

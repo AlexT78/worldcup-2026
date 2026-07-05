@@ -1,0 +1,847 @@
+{
+  "standings": {
+    "Group A": [
+      {
+        "pos": 1,
+        "team": "Mexico",
+        "played": 3,
+        "won": 3,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 6,
+        "ga": 0,
+        "gd": 6,
+        "pts": 9
+      },
+      {
+        "pos": 2,
+        "team": "South Africa",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "pts": 4
+      },
+      {
+        "pos": 3,
+        "team": "South Korea",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "pts": 3
+      },
+      {
+        "pos": 4,
+        "team": "Czech Republic",
+        "played": 3,
+        "won": 0,
+        "drawn": 1,
+        "lost": 2,
+        "gf": 2,
+        "ga": 6,
+        "gd": -4,
+        "pts": 1
+      }
+    ],
+    "Group B": [
+      {
+        "pos": 1,
+        "team": "Switzerland",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Canada",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 8,
+        "ga": 3,
+        "gd": 5,
+        "pts": 4
+      },
+      {
+        "pos": 3,
+        "team": "Bosnia and Herzegovina",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 5,
+        "ga": 6,
+        "gd": -1,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Qatar",
+        "played": 3,
+        "won": 0,
+        "drawn": 1,
+        "lost": 2,
+        "gf": 2,
+        "ga": 10,
+        "gd": -8,
+        "pts": 1
+      }
+    ],
+    "Group C": [
+      {
+        "pos": 1,
+        "team": "Brazil",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 7,
+        "ga": 1,
+        "gd": 6,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Morocco",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 6,
+        "ga": 3,
+        "gd": 3,
+        "pts": 7
+      },
+      {
+        "pos": 3,
+        "team": "Scotland",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 1,
+        "ga": 4,
+        "gd": -3,
+        "pts": 3
+      },
+      {
+        "pos": 4,
+        "team": "Haiti",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 8,
+        "gd": -6,
+        "pts": 0
+      }
+    ],
+    "Group D": [
+      {
+        "pos": 1,
+        "team": "United States",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 8,
+        "ga": 4,
+        "gd": 4,
+        "pts": 6
+      },
+      {
+        "pos": 2,
+        "team": "Australia",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "pos": 3,
+        "team": "Paraguay",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Turkey",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 3,
+        "ga": 5,
+        "gd": -2,
+        "pts": 3
+      }
+    ],
+    "Group E": [
+      {
+        "pos": 1,
+        "team": "Germany",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
+        "pts": 6
+      },
+      {
+        "pos": 2,
+        "team": "Ivory Coast",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "pts": 6
+      },
+      {
+        "pos": 3,
+        "team": "Ecuador",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Curaçao",
+        "played": 3,
+        "won": 0,
+        "drawn": 1,
+        "lost": 2,
+        "gf": 1,
+        "ga": 9,
+        "gd": -8,
+        "pts": 1
+      }
+    ],
+    "Group F": [
+      {
+        "pos": 1,
+        "team": "Netherlands",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Japan",
+        "played": 3,
+        "won": 1,
+        "drawn": 2,
+        "lost": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 5
+      },
+      {
+        "pos": 3,
+        "team": "Sweden",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 7,
+        "ga": 7,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Tunisia",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 12,
+        "gd": -10,
+        "pts": 0
+      }
+    ],
+    "Group G": [
+      {
+        "pos": 1,
+        "team": "Belgium",
+        "played": 3,
+        "won": 1,
+        "drawn": 2,
+        "lost": 0,
+        "gf": 6,
+        "ga": 2,
+        "gd": 4,
+        "pts": 5
+      },
+      {
+        "pos": 2,
+        "team": "Egypt",
+        "played": 3,
+        "won": 1,
+        "drawn": 2,
+        "lost": 0,
+        "gf": 5,
+        "ga": 3,
+        "gd": 2,
+        "pts": 5
+      },
+      {
+        "pos": 3,
+        "team": "Iran",
+        "played": 3,
+        "won": 0,
+        "drawn": 3,
+        "lost": 0,
+        "gf": 3,
+        "ga": 3,
+        "gd": 0,
+        "pts": 3
+      },
+      {
+        "pos": 4,
+        "team": "New Zealand",
+        "played": 3,
+        "won": 0,
+        "drawn": 1,
+        "lost": 2,
+        "gf": 4,
+        "ga": 10,
+        "gd": -6,
+        "pts": 1
+      }
+    ],
+    "Group H": [
+      {
+        "pos": 1,
+        "team": "Spain",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 5,
+        "ga": 0,
+        "gd": 5,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Cape Verde",
+        "played": 3,
+        "won": 0,
+        "drawn": 3,
+        "lost": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 3
+      },
+      {
+        "pos": 3,
+        "team": "Uruguay",
+        "played": 3,
+        "won": 0,
+        "drawn": 2,
+        "lost": 1,
+        "gf": 3,
+        "ga": 4,
+        "gd": -1,
+        "pts": 2
+      },
+      {
+        "pos": 4,
+        "team": "Saudi Arabia",
+        "played": 3,
+        "won": 0,
+        "drawn": 2,
+        "lost": 1,
+        "gf": 1,
+        "ga": 5,
+        "gd": -4,
+        "pts": 2
+      }
+    ],
+    "Group I": [
+      {
+        "pos": 1,
+        "team": "France",
+        "played": 3,
+        "won": 3,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 10,
+        "ga": 2,
+        "gd": 8,
+        "pts": 9
+      },
+      {
+        "pos": 2,
+        "team": "Norway",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 8,
+        "ga": 7,
+        "gd": 1,
+        "pts": 6
+      },
+      {
+        "pos": 3,
+        "team": "Senegal",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 8,
+        "ga": 6,
+        "gd": 2,
+        "pts": 3
+      },
+      {
+        "pos": 4,
+        "team": "Iraq",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 1,
+        "ga": 12,
+        "gd": -11,
+        "pts": 0
+      }
+    ],
+    "Group J": [
+      {
+        "pos": 1,
+        "team": "Argentina",
+        "played": 3,
+        "won": 3,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 8,
+        "ga": 1,
+        "gd": 7,
+        "pts": 9
+      },
+      {
+        "pos": 2,
+        "team": "Austria",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 6,
+        "ga": 6,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "pos": 3,
+        "team": "Algeria",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 5,
+        "ga": 7,
+        "gd": -2,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Jordan",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 3,
+        "ga": 8,
+        "gd": -5,
+        "pts": 0
+      }
+    ],
+    "Group K": [
+      {
+        "pos": 1,
+        "team": "Colombia",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 4,
+        "ga": 1,
+        "gd": 3,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Portugal",
+        "played": 3,
+        "won": 1,
+        "drawn": 2,
+        "lost": 0,
+        "gf": 6,
+        "ga": 1,
+        "gd": 5,
+        "pts": 5
+      },
+      {
+        "pos": 3,
+        "team": "DR Congo",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 4,
+        "ga": 3,
+        "gd": 1,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Uzbekistan",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 11,
+        "gd": -9,
+        "pts": 0
+      }
+    ],
+    "Group L": [
+      {
+        "pos": 1,
+        "team": "England",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 6,
+        "ga": 2,
+        "gd": 4,
+        "pts": 7
+      },
+      {
+        "pos": 2,
+        "team": "Croatia",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 5,
+        "ga": 5,
+        "gd": 0,
+        "pts": 6
+      },
+      {
+        "pos": 3,
+        "team": "Ghana",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "pos": 4,
+        "team": "Panama",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "gf": 0,
+        "ga": 4,
+        "gd": -4,
+        "pts": 0
+      }
+    ]
+  },
+  "teams": [
+    {
+      "name": "Mexico",
+      "group": "Group A",
+      "flag": "🇲🇽"
+    },
+    {
+      "name": "South Africa",
+      "group": "Group A",
+      "flag": "🇿🇦"
+    },
+    {
+      "name": "South Korea",
+      "group": "Group A",
+      "flag": "🇰🇷"
+    },
+    {
+      "name": "Czech Republic",
+      "group": "Group A",
+      "flag": "🇨🇿"
+    },
+    {
+      "name": "Switzerland",
+      "group": "Group B",
+      "flag": "🇨🇭"
+    },
+    {
+      "name": "Canada",
+      "group": "Group B",
+      "flag": "🇨🇦"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "group": "Group B",
+      "flag": "🏳️"
+    },
+    {
+      "name": "Qatar",
+      "group": "Group B",
+      "flag": "🇶🇦"
+    },
+    {
+      "name": "Brazil",
+      "group": "Group C",
+      "flag": "🇧🇷"
+    },
+    {
+      "name": "Morocco",
+      "group": "Group C",
+      "flag": "🇲🇦"
+    },
+    {
+      "name": "Scotland",
+      "group": "Group C",
+      "flag": "🏴"
+    },
+    {
+      "name": "Haiti",
+      "group": "Group C",
+      "flag": "🏳️"
+    },
+    {
+      "name": "United States",
+      "group": "Group D",
+      "flag": "🇺🇸"
+    },
+    {
+      "name": "Australia",
+      "group": "Group D",
+      "flag": "🇦🇺"
+    },
+    {
+      "name": "Paraguay",
+      "group": "Group D",
+      "flag": "🇵🇾"
+    },
+    {
+      "name": "Turkey",
+      "group": "Group D",
+      "flag": "🇹🇷"
+    },
+    {
+      "name": "Germany",
+      "group": "Group E",
+      "flag": "🇩🇪"
+    },
+    {
+      "name": "Ivory Coast",
+      "group": "Group E",
+      "flag": "🇨🇮"
+    },
+    {
+      "name": "Ecuador",
+      "group": "Group E",
+      "flag": "🇪🇨"
+    },
+    {
+      "name": "Curaçao",
+      "group": "Group E",
+      "flag": "🏳️"
+    },
+    {
+      "name": "Netherlands",
+      "group": "Group F",
+      "flag": "🇳🇱"
+    },
+    {
+      "name": "Japan",
+      "group": "Group F",
+      "flag": "🇯🇵"
+    },
+    {
+      "name": "Sweden",
+      "group": "Group F",
+      "flag": "🇸🇪"
+    },
+    {
+      "name": "Tunisia",
+      "group": "Group F",
+      "flag": "🇹🇳"
+    },
+    {
+      "name": "Belgium",
+      "group": "Group G",
+      "flag": "🇧🇪"
+    },
+    {
+      "name": "Egypt",
+      "group": "Group G",
+      "flag": "🇪🇬"
+    },
+    {
+      "name": "Iran",
+      "group": "Group G",
+      "flag": "🇮🇷"
+    },
+    {
+      "name": "New Zealand",
+      "group": "Group G",
+      "flag": "🇳🇿"
+    },
+    {
+      "name": "Spain",
+      "group": "Group H",
+      "flag": "🇪🇸"
+    },
+    {
+      "name": "Cape Verde",
+      "group": "Group H",
+      "flag": "🏳️"
+    },
+    {
+      "name": "Uruguay",
+      "group": "Group H",
+      "flag": "🇺🇾"
+    },
+    {
+      "name": "Saudi Arabia",
+      "group": "Group H",
+      "flag": "🇸🇦"
+    },
+    {
+      "name": "France",
+      "group": "Group I",
+      "flag": "🇫🇷"
+    },
+    {
+      "name": "Norway",
+      "group": "Group I",
+      "flag": "🇳🇴"
+    },
+    {
+      "name": "Senegal",
+      "group": "Group I",
+      "flag": "🇸🇳"
+    },
+    {
+      "name": "Iraq",
+      "group": "Group I",
+      "flag": "🇮🇶"
+    },
+    {
+      "name": "Argentina",
+      "group": "Group J",
+      "flag": "🇦🇷"
+    },
+    {
+      "name": "Austria",
+      "group": "Group J",
+      "flag": "🇦🇹"
+    },
+    {
+      "name": "Algeria",
+      "group": "Group J",
+      "flag": "🇩🇿"
+    },
+    {
+      "name": "Jordan",
+      "group": "Group J",
+      "flag": "🏳️"
+    },
+    {
+      "name": "Colombia",
+      "group": "Group K",
+      "flag": "🇨🇴"
+    },
+    {
+      "name": "Portugal",
+      "group": "Group K",
+      "flag": "🇵🇹"
+    },
+    {
+      "name": "DR Congo",
+      "group": "Group K",
+      "flag": "🇨🇩"
+    },
+    {
+      "name": "Uzbekistan",
+      "group": "Group K",
+      "flag": "🇺🇿"
+    },
+    {
+      "name": "England",
+      "group": "Group L",
+      "flag": "🏴"
+    },
+    {
+      "name": "Croatia",
+      "group": "Group L",
+      "flag": "🇭🇷"
+    },
+    {
+      "name": "Ghana",
+      "group": "Group L",
+      "flag": "🇬🇭"
+    },
+    {
+      "name": "Panama",
+      "group": "Group L",
+      "flag": "🇵🇦"
+    }
+  ],
+  "last_updated": "2026-07-05 22:08 UTC"
+}
