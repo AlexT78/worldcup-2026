@@ -239,7 +239,7 @@
       },
       {
         "pos": 4,
-        "team": "Curaçao",
+        "team": "Cura\u00e7ao",
         "played": 3,
         "won": 0,
         "drawn": 1,
@@ -605,243 +605,243 @@
     {
       "name": "Mexico",
       "group": "Group A",
-      "flag": "🇲🇽"
+      "flag": "\ud83c\uddf2\ud83c\uddfd"
     },
     {
       "name": "South Africa",
       "group": "Group A",
-      "flag": "🇿🇦"
+      "flag": "\ud83c\uddff\ud83c\udde6"
     },
     {
       "name": "South Korea",
       "group": "Group A",
-      "flag": "🇰🇷"
+      "flag": "\ud83c\uddf0\ud83c\uddf7"
     },
     {
       "name": "Czech Republic",
       "group": "Group A",
-      "flag": "🇨🇿"
+      "flag": "\ud83c\udde8\ud83c\uddff"
     },
     {
       "name": "Switzerland",
       "group": "Group B",
-      "flag": "🇨🇭"
+      "flag": "\ud83c\udde8\ud83c\udded"
     },
     {
       "name": "Canada",
       "group": "Group B",
-      "flag": "🇨🇦"
+      "flag": "\ud83c\udde8\ud83c\udde6"
     },
     {
       "name": "Bosnia and Herzegovina",
       "group": "Group B",
-      "flag": "🏳️"
+      "flag": "\ud83c\udff3\ufe0f"
     },
     {
       "name": "Qatar",
       "group": "Group B",
-      "flag": "🇶🇦"
+      "flag": "\ud83c\uddf6\ud83c\udde6"
     },
     {
       "name": "Brazil",
       "group": "Group C",
-      "flag": "🇧🇷"
+      "flag": "\ud83c\udde7\ud83c\uddf7"
     },
     {
       "name": "Morocco",
       "group": "Group C",
-      "flag": "🇲🇦"
+      "flag": "\ud83c\uddf2\ud83c\udde6"
     },
     {
       "name": "Scotland",
       "group": "Group C",
-      "flag": "🏴"
+      "flag": "\ud83c\udff4"
     },
     {
       "name": "Haiti",
       "group": "Group C",
-      "flag": "🏳️"
+      "flag": "\ud83c\udff3\ufe0f"
     },
     {
       "name": "United States",
       "group": "Group D",
-      "flag": "🇺🇸"
+      "flag": "\ud83c\uddfa\ud83c\uddf8"
     },
     {
       "name": "Australia",
       "group": "Group D",
-      "flag": "🇦🇺"
+      "flag": "\ud83c\udde6\ud83c\uddfa"
     },
     {
       "name": "Paraguay",
       "group": "Group D",
-      "flag": "🇵🇾"
+      "flag": "\ud83c\uddf5\ud83c\uddfe"
     },
     {
       "name": "Turkey",
       "group": "Group D",
-      "flag": "🇹🇷"
+      "flag": "\ud83c\uddf9\ud83c\uddf7"
     },
     {
       "name": "Germany",
       "group": "Group E",
-      "flag": "🇩🇪"
+      "flag": "\ud83c\udde9\ud83c\uddea"
     },
     {
       "name": "Ivory Coast",
       "group": "Group E",
-      "flag": "🇨🇮"
+      "flag": "\ud83c\udde8\ud83c\uddee"
     },
     {
       "name": "Ecuador",
       "group": "Group E",
-      "flag": "🇪🇨"
+      "flag": "\ud83c\uddea\ud83c\udde8"
     },
     {
-      "name": "Curaçao",
+      "name": "Cura\u00e7ao",
       "group": "Group E",
-      "flag": "🏳️"
+      "flag": "\ud83c\udff3\ufe0f"
     },
     {
       "name": "Netherlands",
       "group": "Group F",
-      "flag": "🇳🇱"
+      "flag": "\ud83c\uddf3\ud83c\uddf1"
     },
     {
       "name": "Japan",
       "group": "Group F",
-      "flag": "🇯🇵"
+      "flag": "\ud83c\uddef\ud83c\uddf5"
     },
     {
       "name": "Sweden",
       "group": "Group F",
-      "flag": "🇸🇪"
+      "flag": "\ud83c\uddf8\ud83c\uddea"
     },
     {
       "name": "Tunisia",
       "group": "Group F",
-      "flag": "🇹🇳"
+      "flag": "\ud83c\uddf9\ud83c\uddf3"
     },
     {
       "name": "Belgium",
       "group": "Group G",
-      "flag": "🇧🇪"
+      "flag": "\ud83c\udde7\ud83c\uddea"
     },
     {
       "name": "Egypt",
       "group": "Group G",
-      "flag": "🇪🇬"
+      "flag": "\ud83c\uddea\ud83c\uddec"
     },
     {
       "name": "Iran",
       "group": "Group G",
-      "flag": "🇮🇷"
+      "flag": "\ud83c\uddee\ud83c\uddf7"
     },
     {
       "name": "New Zealand",
       "group": "Group G",
-      "flag": "🇳🇿"
+      "flag": "\ud83c\uddf3\ud83c\uddff"
     },
     {
       "name": "Spain",
       "group": "Group H",
-      "flag": "🇪🇸"
+      "flag": "\ud83c\uddea\ud83c\uddf8"
     },
     {
       "name": "Cape Verde",
       "group": "Group H",
-      "flag": "🏳️"
+      "flag": "\ud83c\udff3\ufe0f"
     },
     {
       "name": "Uruguay",
       "group": "Group H",
-      "flag": "🇺🇾"
+      "flag": "\ud83c\uddfa\ud83c\uddfe"
     },
     {
       "name": "Saudi Arabia",
       "group": "Group H",
-      "flag": "🇸🇦"
+      "flag": "\ud83c\uddf8\ud83c\udde6"
     },
     {
       "name": "France",
       "group": "Group I",
-      "flag": "🇫🇷"
+      "flag": "\ud83c\uddeb\ud83c\uddf7"
     },
     {
       "name": "Norway",
       "group": "Group I",
-      "flag": "🇳🇴"
+      "flag": "\ud83c\uddf3\ud83c\uddf4"
     },
     {
       "name": "Senegal",
       "group": "Group I",
-      "flag": "🇸🇳"
+      "flag": "\ud83c\uddf8\ud83c\uddf3"
     },
     {
       "name": "Iraq",
       "group": "Group I",
-      "flag": "🇮🇶"
+      "flag": "\ud83c\uddee\ud83c\uddf6"
     },
     {
       "name": "Argentina",
       "group": "Group J",
-      "flag": "🇦🇷"
+      "flag": "\ud83c\udde6\ud83c\uddf7"
     },
     {
       "name": "Austria",
       "group": "Group J",
-      "flag": "🇦🇹"
+      "flag": "\ud83c\udde6\ud83c\uddf9"
     },
     {
       "name": "Algeria",
       "group": "Group J",
-      "flag": "🇩🇿"
+      "flag": "\ud83c\udde9\ud83c\uddff"
     },
     {
       "name": "Jordan",
       "group": "Group J",
-      "flag": "🏳️"
+      "flag": "\ud83c\udff3\ufe0f"
     },
     {
       "name": "Colombia",
       "group": "Group K",
-      "flag": "🇨🇴"
+      "flag": "\ud83c\udde8\ud83c\uddf4"
     },
     {
       "name": "Portugal",
       "group": "Group K",
-      "flag": "🇵🇹"
+      "flag": "\ud83c\uddf5\ud83c\uddf9"
     },
     {
       "name": "DR Congo",
       "group": "Group K",
-      "flag": "🇨🇩"
+      "flag": "\ud83c\udde8\ud83c\udde9"
     },
     {
       "name": "Uzbekistan",
       "group": "Group K",
-      "flag": "🇺🇿"
+      "flag": "\ud83c\uddfa\ud83c\uddff"
     },
     {
       "name": "England",
       "group": "Group L",
-      "flag": "🏴"
+      "flag": "\ud83c\udff4"
     },
     {
       "name": "Croatia",
       "group": "Group L",
-      "flag": "🇭🇷"
+      "flag": "\ud83c\udded\ud83c\uddf7"
     },
     {
       "name": "Ghana",
       "group": "Group L",
-      "flag": "🇬🇭"
+      "flag": "\ud83c\uddec\ud83c\udded"
     },
     {
       "name": "Panama",
       "group": "Group L",
-      "flag": "🇵🇦"
+      "flag": "\ud83c\uddf5\ud83c\udde6"
     }
   ],
-  "last_updated": "2026-07-05 22:08 UTC"
+  "last_updated": "2026-07-06 02:12 UTC"
 }
